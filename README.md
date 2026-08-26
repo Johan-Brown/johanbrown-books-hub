@@ -435,6 +435,3 @@ The collection structure is intentionally extensible, allowing additional reposi
 
 ---
 
-## 📄 License
-
-Add the applicable license and usage terms for the JohanBrown book collections here.
