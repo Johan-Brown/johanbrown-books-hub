@@ -1,24 +1,24 @@
 const fs = require("fs");
 const path = require("path");
 
-const ROOT_DIR = path.resolve(__dirname, "..");
-const HUB_DIR = ROOT_DIR;
+const PARENT_DIR = path.resolve(__dirname, "../..");
+const HUB_DIR = path.resolve(__dirname, "..");
 const OUTPUT_FILE = path.join(HUB_DIR, "categories.json");
 
 const categories = [];
 
-const entries = fs.readdirSync(ROOT_DIR, {
+const entries = fs.readdirSync(PARENT_DIR, {
   withFileTypes: true
 });
 
 for (const entry of entries) {
   if (!entry.isDirectory()) continue;
 
-  // Skip the hub itself
-  if (entry.name === "johanbrown-books-hub") continue;
+  // Skip hidden folders, scripts, or the hub repo itself
+  if (entry.name.startsWith(".") || entry.name === "johanbrown-books-hub" || entry.name === "node_modules") continue;
 
   const categoryFile = path.join(
-    ROOT_DIR,
+    PARENT_DIR,
     entry.name,
     "category.json"
   );

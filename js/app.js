@@ -21,11 +21,17 @@ function categoryInitials(title) {
   return (words[0][0] + words[1][0]).toUpperCase();
 }
 
+function getCategoryUrl(cat, folder) {
+  if (cat.url) return cat.url;
+  // Step out of johanbrown-books-hub repo directory to sibling repo directory on GitHub Pages
+  return `../${folder}/`;
+}
+
 function renderCategoryIcon(cat, folder) {
   if (cat.logo) {
-    const src = cat.logo.startsWith('http://') || cat.logo.startsWith('https://') || cat.logo.startsWith('/')
+    const src = (cat.logo.startsWith('http://') || cat.logo.startsWith('https://') || cat.logo.startsWith('/'))
       ? cat.logo
-      : `./${folder}/${cat.logo}`;
+      : `../${folder}/${cat.logo}`;
     return `<img src="${escapeHtml(src)}" alt="${escapeHtml(cat.title)} logo" class="card-logo-img">`;
   }
   if (cat.icon) {
@@ -40,9 +46,10 @@ async function loadJson(file) {
   return response.json();
 }
 
-async function fetchBookCount(folder) {
+async function fetchBookCount(cat, folder) {
   try {
-    const data = await loadJson(`./${folder}/books.json`);
+    const baseUrl = cat.url ? cat.url.replace(/\/$/, '') : `../${folder}`;
+    const data = await loadJson(`${baseUrl}/books.json`);
     const books = Array.isArray(data) ? data : (data.books || []);
     const published = books.filter(b => b.status !== 'draft' && b.status !== 'hidden');
     return published.length;
@@ -79,8 +86,8 @@ async function renderCategories() {
     const title = escapeHtml(cat.title || 'Untitled Category');
     const desc = escapeHtml(cat.description || 'Interactive digital storybooks collection.');
     const folder = cat.folder || cat.slug || '';
-    const href = `./${folder}/`;
-    const count = await fetchBookCount(folder);
+    const href = getCategoryUrl(cat, folder);
+    const count = await fetchBookCount(cat, folder);
     const countLabel = count !== null ? `📖 ${count} Book${count === 1 ? '' : 's'}` : '📖 Explore Library';
 
     return `
