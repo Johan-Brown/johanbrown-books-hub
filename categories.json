@@ -72,18 +72,6 @@
       "status": "published",
       "order": 6,
       "folder": "Therapedia"
-    },
-    {
-      "type": "ebook-category",
-      "title": "WhyLearnix",
-      "slug": "whylearnix",
-      "badge": "CONCEPT EXPLORERS",
-      "icon": "💡",
-      "logo": "",
-      "description": "Inquiry-based learning storybooks explaining the core 'why' behind concepts.",
-      "status": "published",
-      "order": 7,
-      "folder": "WhyLearnix"
     }
   ]
 }
