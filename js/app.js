@@ -1,6 +1,7 @@
 const state = {
   categories: [],
-  query: ''
+  query: '',
+  sortBy: 'featured'
 };
 
 const $ = (selector) => document.querySelector(selector);
@@ -23,7 +24,6 @@ function categoryInitials(title) {
 
 function getCategoryUrl(cat, folder) {
   if (cat.url) return cat.url;
-  // Step out of johanbrown-books-hub repo directory to sibling repo directory on GitHub Pages
   return `../${folder}/`;
 }
 
@@ -62,7 +62,7 @@ async function renderCategories() {
   const grid = $('#categoriesGrid');
   const query = state.query.trim().toLowerCase();
 
-  const filtered = state.categories
+  let filtered = state.categories
     .filter(cat => cat.status !== 'draft' && cat.status !== 'hidden')
     .filter(cat => {
       if (!query) return true;
@@ -70,8 +70,21 @@ async function renderCategories() {
       const descMatch = String(cat.description || '').toLowerCase().includes(query);
       const folderMatch = String(cat.folder || '').toLowerCase().includes(query);
       return titleMatch || descMatch || folderMatch;
-    })
-    .sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
+    });
+
+  // Sorting Logic
+  if (state.sortBy === 'az') {
+    filtered.sort((a, b) => String(a.title).localeCompare(String(b.title)));
+  } else if (state.sortBy === 'za') {
+    filtered.sort((a, b) => String(b.title).localeCompare(String(a.title)));
+  } else if (state.sortBy === 'recent') {
+    filtered.sort((a, b) => (Number(b.order) || 0) - (Number(a.order) || 0));
+  } else if (state.sortBy === 'oldest') {
+    filtered.sort((a, b) => (Number(a.order) || 0) - (Number(b.order) || 0));
+  } else {
+    // Featured default
+    filtered.sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
+  }
 
   $('#categoryCount').textContent = query
     ? `${filtered.length} matching categor${filtered.length === 1 ? 'y' : 'ies'}`
@@ -86,12 +99,13 @@ async function renderCategories() {
     const title = escapeHtml(cat.title || 'Untitled Category');
     const desc = escapeHtml(cat.description || 'Interactive digital storybooks collection.');
     const folder = cat.folder || cat.slug || '';
+    const slug = cat.slug || folder.toLowerCase().replace(/[^a-z0-9]+/g, '-');
     const href = getCategoryUrl(cat, folder);
     const count = await fetchBookCount(cat, folder);
     const countLabel = count !== null ? `📖 ${count} Book${count === 1 ? '' : 's'}` : '📖 Explore Library';
 
     return `
-      <article class="category-card">
+      <article class="category-card" data-slug="${escapeHtml(slug)}">
         <div class="card-header">
           <span class="card-badge">${escapeHtml(cat.badge || 'CATEGORY')}</span>
           <div class="card-icon-box" aria-hidden="true">${renderCategoryIcon(cat, folder)}</div>
@@ -117,10 +131,19 @@ function showError(error) {
 
 async function init() {
   $('#year').textContent = new Date().getFullYear();
+  
   $('#searchInput').addEventListener('input', (event) => {
     state.query = event.target.value;
     renderCategories();
   });
+
+  const sortSelect = $('#sortSelect');
+  if (sortSelect) {
+    sortSelect.addEventListener('change', (event) => {
+      state.sortBy = event.target.value;
+      renderCategories();
+    });
+  }
 
   try {
     const data = await loadJson('./categories.json');

@@ -41,11 +41,23 @@
           <h2 id="libraryHeading">Book Collections</h2>
           <p id="categoryCount" class="category-count">Loading categories…</p>
         </div>
-        <label class="search-box">
-          <span class="sr-only">Search categories</span>
-          <span aria-hidden="true">⌕</span>
-          <input id="searchInput" type="search" placeholder="Search categories…" autocomplete="off">
-        </label>
+        <div class="controls-bar">
+          <label class="sort-box">
+            <span class="sort-label">Sort:</span>
+            <select id="sortSelect">
+              <option value="featured">Featured Order</option>
+              <option value="az">Alphabetical (A - Z)</option>
+              <option value="za">Alphabetical (Z - A)</option>
+              <option value="recent">Newest First</option>
+              <option value="oldest">Oldest First</option>
+            </select>
+          </label>
+          <label class="search-box">
+            <span class="sr-only">Search categories</span>
+            <span aria-hidden="true">⌕</span>
+            <input id="searchInput" type="search" placeholder="Search categories…" autocomplete="off">
+          </label>
+        </div>
       </div>
 
       <div id="status" class="status" role="status" aria-live="polite">Loading category collections…</div>
