@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T10:18:01.442Z",
+  "generatedAt": "2026-08-27T11:56:46.739Z",
   "categories": [
     {
       "type": "ebook-category",
@@ -47,7 +47,7 @@
       "description": "Interactive educational storybooks turning mistakes into golden learning experiences.",
       "status": "published",
       "order": 3,
-      "folder": "Golden Books of Mistakes"
+      "folder": "Golden-Books-of-Mistakes"
     },
     {
       "type": "ebook-category",
@@ -72,6 +72,18 @@
       "status": "published",
       "order": 6,
       "folder": "Therapedia"
+    },
+    {
+      "type": "ebook-category",
+      "title": "WhyLearnix",
+      "slug": "whylearnix",
+      "badge": "CONCEPT EXPLORERS",
+      "icon": "💡",
+      "logo": "",
+      "description": "Inquiry-based learning storybooks explaining the core 'why' behind concepts.",
+      "status": "published",
+      "order": 7,
+      "folder": "WhyLearnix"
     }
   ]
 }
