@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="JohanBrown Books Hub — Dynamic digital library for interactive storybooks, narrative interventions, and educational categories.">
+  <meta name="theme-color" content="#0b4f43">
+  <title>JohanBrown Books Hub — Interactive Digital Library</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="./" aria-label="JohanBrown Books Hub home">
+        <span class="brand-mark">JB</span>
+        <span>JohanBrown Books</span>
+        <span class="brand-tag">HUB</span>
+      </a>
+    </nav>
+
+    <div class="hero-content container">
+      <div class="hero-copy">
+        <span class="eyebrow">DIGITAL LIBRARY HUB</span>
+        <h1>JohanBrown Books</h1>
+        <p id="hubSubtitle">Interactive Digital Storybooks & Narrative Interventions</p>
+        <p class="hero-note">Explore our dynamic library of interactive storybooks, psychological narrative interventions, and educational collections for children and learners.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="floating-icon icon-one">✨</div>
+        <div class="floating-icon icon-two">🌟</div>
+        <div class="hero-circle">📖</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <section class="library-section container" aria-labelledby="libraryHeading">
+      <div class="section-top">
+        <div>
+          <span class="section-kicker">EXPLORE CATEGORIES</span>
+          <h2 id="libraryHeading">Book Collections</h2>
+          <p id="categoryCount" class="category-count">Loading categories…</p>
+        </div>
+        <label class="search-box">
+          <span class="sr-only">Search categories</span>
+          <span aria-hidden="true">⌕</span>
+          <input id="searchInput" type="search" placeholder="Search categories…" autocomplete="off">
+        </label>
+      </div>
+
+      <div id="status" class="status" role="status" aria-live="polite">Loading category collections…</div>
+      <div id="categoriesGrid" class="categories-grid" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> JohanBrown Books Hub</span>
+      <span>Interactive Storybooks & Narrative Interventions</span>
+    </div>
+  </footer>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>

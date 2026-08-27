@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-08-26T13:28:06.221Z",
+  "categories": [
+    {
+      "type": "ebook-category",
+      "title": "NIBBLES",
+      "slug": "nibbles",
+      "badge": "INTERVENTION",
+      "icon": "🧠",
+      "logo": "",
+      "description": "Narrative Intervention Books for Behavioural, Learning, Emotional & Social Development.",
+      "status": "published",
+      "order": 1,
+      "folder": "NIBBLES"
+    },
+    {
+      "type": "ebook-category",
+      "title": "Mogge_Empathy",
+      "slug": "Mogge_Empathy",
+      "badge": "EMPATHY BOOKS",
+      "icon": "💚",
+      "logo": "",
+      "description": "Mission Of Generating Global Empathy.",
+      "status": "published",
+      "order": 2,
+      "folder": "Mogge_Empathy"
+    }
+  ]
+}
