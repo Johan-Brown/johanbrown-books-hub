@@ -61,7 +61,7 @@ async function fetchBookCount(cat, folder) {
 async function renderCategories() {
   const grid = $('#categoriesGrid');
   const query = state.query.trim().toLowerCase();
-  
+
   const filtered = state.categories
     .filter(cat => cat.status !== 'draft' && cat.status !== 'hidden')
     .filter(cat => {

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T07:36:37.518Z",
+  "generatedAt": "2026-08-27T09:31:03.917Z",
   "categories": [
     {
       "type": "ebook-category",
@@ -15,15 +15,27 @@
     },
     {
       "type": "ebook-category",
-      "title": "Mogge_Empathy",
-      "slug": "Mogge_Empathy",
+      "title": "MOGGE",
+      "slug": "mogge",
       "badge": "EMPATHY BOOKS",
       "icon": "💚",
       "logo": "",
       "description": "Mission Of Generating Global Empathy.",
       "status": "published",
       "order": 2,
-      "folder": "Mogge_Empathy"
+      "folder": "MOGGE"
+    },
+    {
+      "type": "ebook-category",
+      "title": "Golden Books of Mistakes",
+      "slug": "golden-books-of-mistakes",
+      "badge": "GOLDEN BOOKS",
+      "icon": "📖",
+      "logo": "",
+      "description": "Interactive educational storybooks turning mistakes into golden learning experiences.",
+      "status": "published",
+      "order": 3,
+      "folder": "Golden Books of Mistakes"
     }
   ]
 }

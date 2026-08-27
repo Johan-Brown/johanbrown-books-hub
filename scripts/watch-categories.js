@@ -2,14 +2,15 @@ const { exec } = require("child_process");
 const fs = require("fs");
 const path = require("path");
 
-const ROOT_DIR = path.resolve(__dirname, "..");
+const PARENT_DIR = path.resolve(__dirname, "../..");
+const HUB_DIR = path.resolve(__dirname, "..");
 
 console.log("Watching category directories...");
 
 let timeout;
 
 fs.watch(
-  ROOT_DIR,
+  PARENT_DIR,
   { recursive: true },
   (eventType, filename) => {
     if (!filename) return;
@@ -26,7 +27,7 @@ fs.watch(
         exec(
           "node scripts/sync-categories.js",
           {
-            cwd: path.resolve(__dirname, "..")
+            cwd: HUB_DIR
           },
           (error, stdout, stderr) => {
             if (error) {
